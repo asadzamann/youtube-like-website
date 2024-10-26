@@ -47,13 +47,14 @@ const loadCategoryVideos = (id) => {
             removeActiveClass();
             const activeBtn = document.getElementById(`btn-${id}`);
             activeBtn.classList.add("active")
-            displayVideos(data.category)})
+            displayVideos(data.category)
+        })
         .catch(error => console.log(error))
 };
 
 // load videos
-const loadVideos = () => {
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+const loadVideos = (searchText = "") => {
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
         .then(response => response.json())
         .then(data => displayVideos(data.videos))
         .catch(error => console.log(error))
@@ -63,7 +64,7 @@ const loadVideos = () => {
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName("category-btn");
     console.log(buttons);
-    for(let btn of buttons){
+    for (let btn of buttons) {
         btn.classList.remove("active");
     }
 }
@@ -78,7 +79,6 @@ const displayVideos = (videos) => {
         <div class="min-h-[300px] flex flex-col gap-5 justify-center items-center">
             <img src="assets/Icon.png">
             <h2 class="font-bold text-3xl text-center">There is no content here.</h2>
-            <h2 class="font-bold text-3xl text-center">Please ask Asad to add some drawings here.</h2>
         </div>
         `;
         return;
@@ -106,6 +106,7 @@ const displayVideos = (videos) => {
                   ${item.authors[0].verified === true ? `<img class="w-4" src="https://img.icons8.com/?size=100&id=98A4yZTt9abw&format=png&color=000000">` : ""}
                   </div>
                   <p>${item.others.views}</p>
+                  <button onclick="loadDetails('${item.video_id}')" class="btn btn-sm btn-error">Details</button>
                   </div>
                 </div>
      `;
@@ -114,6 +115,51 @@ const displayVideos = (videos) => {
 
 }
 
+const loadDetails = async (videoId) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`);
+    const data = await response.json();
+    displayDetails(data.video);
+};
+
+const displayDetails = (video) => {
+    console.log(video)
+    const modalContent = document.getElementById('modal-content');
+    modalContent.innerHTML = `
+    <img src="${video.thumbnail}"/>
+    <br>
+    <p>${video.description}</p>  
+    `
+    // testing way one
+    //    document.getElementById('showModalData').click();
+    document.getElementById('customModal').showModal();
+}
+
+// search functionality
+document.getElementById('search-input').addEventListener("keyup", (e)=>{
+    loadVideos(e.target.value)
+})
+// {
+//   "status": true,
+//   "message": "Successfully fetched the video with video id 'aaac'",
+//   "video": {
+//     "category_id": "1003",
+//     "video_id": "aaac",
+//     "thumbnail": "https://i.ibb.co/NTncwqH/luahg-at-pain.jpg",
+//     "title": "Laugh at My Pain",
+//     "authors": [
+//       {
+//         "profile_picture": "https://i.ibb.co/XVHM7NP/kevin.jpg",
+//         "profile_name": "Kevin Hart",
+//         "verified": false
+//       }
+//     ],
+//     "others": {
+//       "views": "1.1K",
+//       "posted_date": "13885"
+//     },
+//     "description": "Comedian Kevin Hart brings his unique brand of humor to life in 'Laugh at My Pain.' With 1.1K views, this show offers a hilarious and candid look into Kevin's personal stories, struggles, and triumphs. It's a laugh-out-loud experience filled with sharp wit, clever insights, and a relatable charm that keeps audiences coming back for more."
+//   }
+// }
 
 // calling the function
 loadVideos();

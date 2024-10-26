@@ -24,41 +24,51 @@
             <!-- search -->
             <div>
                 <label class="input input-bordered flex items-center gap-2">
-                    <input type="text" class="grow" placeholder="Search" />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="h-4 w-4 opacity-70">
-                      <path
-                        fill-rule="evenodd"
-                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                        clip-rule="evenodd" />
+                    <input id="search-input" type="text" class="grow" placeholder="Search" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                        class="h-4 w-4 opacity-70">
+                        <path fill-rule="evenodd"
+                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                            clip-rule="evenodd" />
                     </svg>
-                  </label>
+                </label>
             </div>
-            <!-- sort by view -->
-             <div>
-                <button class="btn ">Sort By View</button>
-             </div>
-             
+
         </nav>
         <!-- navbar ends -->
 
         <!-- category navbar starts -->
-         <nav id="category-container" class="flex justify-center gap-4 my-4">
+        <nav id="category-container" class="flex justify-center gap-4 my-4">
 
-         </nav>
+        </nav>
         <!-- category navbar ends -->
     </header>
 
     <!-- main -->
     <main>
+
+        <!-- Open the modal using ID.showModal() method -->
+        <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">open modal</button>
+        <dialog id="customModal" class="modal">
+            <div class="modal-box">
+                <div id="modal-content">
+
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+
         <!-- Video Categories -->
-       <section id="video-container" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10">
-        <!-- card -->
-       
-       </section>
+        <section id="video-container"
+            class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10">
+            <!-- card -->
+
+        </section>
     </main>
 
     <!-- footer -->
