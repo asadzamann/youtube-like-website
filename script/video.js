@@ -4,7 +4,7 @@ function getTimeString(time) {
     let remainingSecond = time % 3600;
     const minute = parseInt(remainingSecond / 60);
     remainingSecond = remainingSecond % 60;
-    return `${hour} hours and ${minute} minutes and ${remainingSecond} seconds ago`
+    return `${hour} hours and ${minute} minutes ago`
 }
 
 
