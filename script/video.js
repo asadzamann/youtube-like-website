@@ -138,28 +138,6 @@ const displayDetails = (video) => {
 document.getElementById('search-input').addEventListener("keyup", (e)=>{
     loadVideos(e.target.value)
 })
-// {
-//   "status": true,
-//   "message": "Successfully fetched the video with video id 'aaac'",
-//   "video": {
-//     "category_id": "1003",
-//     "video_id": "aaac",
-//     "thumbnail": "https://i.ibb.co/NTncwqH/luahg-at-pain.jpg",
-//     "title": "Laugh at My Pain",
-//     "authors": [
-//       {
-//         "profile_picture": "https://i.ibb.co/XVHM7NP/kevin.jpg",
-//         "profile_name": "Kevin Hart",
-//         "verified": false
-//       }
-//     ],
-//     "others": {
-//       "views": "1.1K",
-//       "posted_date": "13885"
-//     },
-//     "description": "Comedian Kevin Hart brings his unique brand of humor to life in 'Laugh at My Pain.' With 1.1K views, this show offers a hilarious and candid look into Kevin's personal stories, struggles, and triumphs. It's a laugh-out-loud experience filled with sharp wit, clever insights, and a relatable charm that keeps audiences coming back for more."
-//   }
-// }
 
 // calling the function
 loadVideos();
